@@ -6,14 +6,22 @@ html {
     @apply bg-gray-50
 }
 
+.alert {
+    @apply text-sm px-2 py-4 mb-4;
+}
+
+.alert.alert-danger {
+    @apply border-b-2 border-red-600 text-red-700 bg-red-50 cursor-pointer
+}
+
 input {
     @apply bg-blue-100 border-b-2 border-cyan-500 hover:border-cyan-600 w-full py-4 outline-0 px-2
 }
 
-button {
-    @apply bg-cyan-600 text-white uppercase w-full py-4
+.btn {
+    @apply bg-cyan-700 hover:bg-cyan-800 text-white uppercase w-full py-4
 }
 
 footer {
-    @apply text-lg text-gray-700
+    @apply text-lg text-gray-700 mx-2 rounded-lg mb-4
 }
