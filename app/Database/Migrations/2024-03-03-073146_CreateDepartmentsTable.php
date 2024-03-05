@@ -21,6 +21,18 @@ class CreateDepartmentsTable extends Migration
                 'constraint' => '20',
                 'unique' => true
             ], 
+            'CreatedAt'=>[
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'UpdatedAt'=>[
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'DeletedAt'=>[
+                'type' => 'INT',
+                'null' => true,
+            ]
         ]);
         $this->forge->addPrimaryKey('ID');
         $this->forge->createTable('departments', true);

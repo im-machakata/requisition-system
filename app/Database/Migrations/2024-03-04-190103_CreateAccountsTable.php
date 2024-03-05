@@ -25,6 +25,18 @@ class CreateAccountsTable extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'CreatedAt' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'UpdatedAt' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'DeletedAt' => [
+                'type' => 'INT',
+                'null' => true,
+            ]
         ]);
         $this->forge->addPrimaryKey('ID');
         $this->forge->createTable('accounts', true);

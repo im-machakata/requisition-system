@@ -16,7 +16,7 @@ class CreateEmployeeTable extends Migration
                 'null' => true,
                 'auto_increment' => true
             ],
-            'AccountID'=>[
+            'AccountID' => [
                 'type' => 'INT',
                 'constraint' => 8,
             ],
@@ -39,6 +39,18 @@ class CreateEmployeeTable extends Migration
             'DepartmentID' => [
                 'type' => 'INT',
                 'constraint' => '20',
+            ],
+            'CreatedAt' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'UpdatedAt' => [
+                'type' => 'INT',
+                'null' => true,
+            ],
+            'DeletedAt' => [
+                'type' => 'INT',
+                'null' => true,
             ]
         ]);
         $this->forge->addPrimaryKey('ID');
