@@ -51,4 +51,16 @@ class Auth extends BaseController
         // redirect to the home page
         return $this->response->redirect('/');
     }
+    public function logout()
+    {
+
+        // if session does not exist, do not try to delete it, duh!
+        if (session()->get('user')) {
+            // delete session data
+            session()->remove('user');
+        }
+
+        // redirect to the home page
+        return $this->response->redirect('/auth/login');
+    }
 }
