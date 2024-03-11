@@ -1,9 +1,16 @@
 <?php if ($this->data['error']) : ?>
-    <div class="alert alert-danger col-12">
-        <?php $errors = $this->data['error'];
-        $errorIds = array_keys($errors);
-        
-        // print just the first error message
-        echo esc($errors[$errorIds[0]]); ?>
+    <div class="ol-12">
+        <div class="alert alert-danger rounded-0">
+            <?php
+            $errors = $this->data['error'];
+            if (is_array($errors)) {
+                $errorIds = array_keys($errors);
+                $error = $errors[$errorIds[0]];
+            } else if (is_string($errors)) {
+                $error = $errors;
+            }
+            // print just the first error message
+            echo esc($error); ?>
+        </div>
     </div>
 <?php endif;
