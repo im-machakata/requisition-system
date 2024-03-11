@@ -13,6 +13,10 @@ class Auth extends BaseController
     {
         return view('auth/login');
     }
+    public function register()
+    {
+        return view('auth/add-user');
+    }
     public function createSession()
     {
         $employee = new Employee($this->request->getPost());
@@ -51,6 +55,8 @@ class Auth extends BaseController
         // redirect to the home page
         return $this->response->redirect('/');
     }
+
+    public function createAccount(){}
     public function logout()
     {
 
