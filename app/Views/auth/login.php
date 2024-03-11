@@ -1,15 +1,10 @@
 <?php
 $this->setVar('title', 'Login');
 echo $this->include('_templates/head'); ?>
-<main class="d-flex flex-column justify-content-center align-items-center" style="height: 100vh">
-    <div class="row justify-content-center border rounded-2 p-3" style="max-width: 400px;">
-        <div class="login-header text-center col-12">
-            <img src="" alt="">
-            <h1 class="fw-bold h6">Municipality of Rutenga</h1>
-            <p class="mb-4 text-muted">Online Requisition System</p>
-        </div>
+<main class="d-flex flex-column justify-content-center align-items-center bg-light" style="height: 100vh">
+    <div class="row justify-content-center shadow rounded-4 p-3 bg-white mx-2" style="max-width: 400px;">
+        <?php echo $this->include('_templates/header'); ?>
         <?php if (isset($this->data['error'])) :
-            $this->setVar('error', $this->data['error']);
             echo $this->include('_templates/errors');
         endif; ?>
         <form action="/auth/login" method="post" class="d-block col-12">
@@ -22,7 +17,7 @@ echo $this->include('_templates/head'); ?>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" autocomplete="off" required>
             </div>
             <div class="mb-2">
-                <button class="btn btn-primary w-100" type="submit">Login</button>
+                <button class="btn btn-lg btn-primary rounded-0 mt-2 w-100" type="submit">Login</button>
             </div>
         </form>
     </div>
