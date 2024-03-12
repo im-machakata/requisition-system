@@ -28,6 +28,12 @@ class Authenticated implements FilterInterface
         if (!session()->get('user')) {
             return redirect()->to(base_url('auth/login'));
         }
+
+        // if user is logged in and arguments are present
+        $userDepartment = session()->get('user')->department ?? 'EMPLOYEE';
+        if ($arguments && !in_array($userDepartment, $arguments)) {
+            return response()->setBody(view('errors/401'))->setStatusCode(401);
+        }
     }
 
     /**
