@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Entities\Employee;
 use App\Models\Account;
+use App\Models\Department;
+use App\Models\Employee as ModelsEmployee;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Auth extends BaseController
@@ -33,30 +35,36 @@ class Auth extends BaseController
         }
 
         $accounts = model(Account::class);
-        $foundEmployee = $accounts->where('Username', $employee->username)->first();
+        $userAccount = $accounts->where('Username', $employee->username)->first();
+        $passwordMatches = false;
 
-        if (!$foundEmployee) {
-            return view('auth/login', [
-                'error' => 'Invalid username or password'
-            ]);
+        if ($userAccount) {
+            $passwordMatches = $employee->password === $userAccount->Password;
         }
 
         // password has to be hashed before comparing, but disabled for plain passwords to work
-        // if (!password_verify($employee->password, $foundEmployee->password)) {
-        if ($employee->password !== $foundEmployee->Password) {
+        // if (!password_verify($employee->password, $userAccount->password)) {
+        if (!$userAccount || !$passwordMatches) {
             return view('auth/login', [
                 'error' => 'Invalid username or password'
             ]);
         }
 
+        // find the employee department
+        $employee = model(ModelsEmployee::class)->where('AccountID', $userAccount->ID)->first();
+        $departments = model(Department::class)->find($employee->DepartmentID);
+        $userAccount->department = $departments->Name;
+
         // save the employee data to the session
-        session()->set('user', $foundEmployee);
+        session()->set('user', $userAccount);
 
         // redirect to the home page
         return $this->response->redirect('/');
     }
 
-    public function createAccount(){}
+    public function createAccount()
+    {
+    }
     public function logout()
     {
 
