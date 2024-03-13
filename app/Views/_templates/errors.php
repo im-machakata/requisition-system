@@ -1,6 +1,6 @@
 <?php if ($this->data['error']) : ?>
     <div class="ol-12">
-        <div class="alert alert-danger rounded-0">
+        <div class="alert alert-danger border-danger">
             <?php
             $errors = $this->data['error'];
             if (is_array($errors)) {
