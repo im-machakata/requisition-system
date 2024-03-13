@@ -18,7 +18,10 @@ class Auth extends BaseController
 
     public function register()
     {
-        return view('auth/add-user');
+        $departments = model(Department::class)->findAll();
+        return view('auth/add-user', [
+            'departments' => $departments
+        ]);
     }
 
     public function createSession()
@@ -77,11 +80,13 @@ class Auth extends BaseController
         }
     }
 
-    public function viewPassword(){
+    public function viewPassword()
+    {
         return view('auth/change-password');
     }
 
-    public function changePassword(){
+    public function changePassword()
+    {
         $formDataIsValid = $this->validate([
             'password' => 'required|min_length[6]|max_length[25]',
             'confirm_password' => 'required|matches[password]',
