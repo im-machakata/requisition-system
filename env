@@ -32,3 +32,9 @@ database.default.username = root
 database.default.password = ''
 database.default.DBDriver = MySQLi
 database.default.port = 3306
+
+#-------------------------------------------------------------------
+# DEFAULT LOGIN
+#-------------------------------------------------------------------
+default.login.admin.username = admin
+default.login.admin.password = 'f21do7'
