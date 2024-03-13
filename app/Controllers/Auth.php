@@ -15,10 +15,12 @@ class Auth extends BaseController
     {
         return view('auth/login');
     }
+
     public function register()
     {
         return view('auth/add-user');
     }
+
     public function createSession()
     {
         $employee = new Employee($this->request->getPost());
@@ -64,7 +66,40 @@ class Auth extends BaseController
 
     public function createAccount()
     {
+        $this->validate([
+            'name' => 'required|min_length[3]|max_length[25]',
+            'surname' => 'required|min_length[3]|max_length[25]',
+        ]);
+        if (!$this->validator->run()) {
+            return view('auth/add-user', [
+                'error' => $this->validator->getErrors(),
+            ]);
+        }
     }
+
+    public function viewPassword(){
+        return view('auth/change-password');
+    }
+
+    public function changePassword(){
+        $formDataIsValid = $this->validate([
+            'password' => 'required|min_length[6]|max_length[25]',
+            'confirm_password' => 'required|matches[password]',
+        ]);
+        if (!$formDataIsValid) {
+            return view('auth/change-password', [
+                'error' => $this->validator->getErrors(),
+            ]);
+        }
+
+        $accounts = model(Account::class);
+        $employee = session()->get('user');
+        $employee->Password = trim($this->validator->getValidated()['password']);
+        $accounts->save($employee);
+
+        return redirect('/');
+    }
+
     public function logout()
     {
 
