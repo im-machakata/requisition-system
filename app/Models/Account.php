@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Entities\Employee;
+use App\Entities\Account as EntitiesAccount;
 use CodeIgniter\Model;
 
 class Account extends Model
@@ -10,7 +10,7 @@ class Account extends Model
     protected $table            = 'accounts';
     protected $primaryKey       = 'ID';
     protected $useAutoIncrement = true;
-    protected $returnType       = Employee::class;
+    protected $returnType       = EntitiesAccount::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
@@ -21,7 +21,7 @@ class Account extends Model
     protected bool $allowEmptyInserts = false;
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'int';
     protected $createdField  = 'CreatedAt';
     protected $updatedField  = 'UpdatedAt';
