@@ -36,6 +36,14 @@ class Requisition extends Migration
                     'Advanced_Salary',
                 ],
             ],
+            'OutFrom' => [
+                'type' => 'DATE',
+                'null' => true
+            ],
+            'OutTo' => [
+                'type' => 'DATE',
+                'null' => true
+            ],
             'Status' => [
                 'type' => 'ENUM',
                 'constraint' => [
@@ -63,7 +71,7 @@ class Requisition extends Migration
         ]);
 
         $this->forge->addPrimaryKey('ID');
-        $this->forge->addForeignKey('AccountID','accounts','ID');
+        $this->forge->addForeignKey('AccountID', 'accounts', 'ID');
         $this->forge->createTable('requisitions');
     }
 
