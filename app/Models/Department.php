@@ -20,7 +20,7 @@ class Department extends Model
     protected bool $allowEmptyInserts = false;
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'int';
     protected $createdField  = 'CreatedAt';
     protected $updatedField  = 'UpdatedAt';
