@@ -20,7 +20,7 @@ class Auth extends BaseController
      * @var array
      */
     private static $ADD_USER_CONFIG = [];
-    
+
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // perform any parent class functions
@@ -40,7 +40,11 @@ class Auth extends BaseController
 
     public function register()
     {
-        return view('auth/add-user', self::$ADD_USER_CONFIG);
+        $accounts = model(Account::class);
+        return view('auth/add-user', [
+            ...self::$ADD_USER_CONFIG,
+            'users' => $accounts->join('employees', 'AccountID =  accounts.ID')->findAll()
+        ]);
     }
 
     public function createSession()
