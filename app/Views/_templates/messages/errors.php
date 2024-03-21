@@ -1,5 +1,5 @@
 <?php if ($this->data['error']) : ?>
-    <div class="ol-12">
+    <div class="col-12">
         <div class="text-white bg-danger p-2 mb-4 rounded">
             <strong>Error:</strong>
             <?php

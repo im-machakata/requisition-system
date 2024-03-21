@@ -3,10 +3,8 @@ $this->setVar('title', 'Change Password');
 echo $this->include('_templates/head'); ?>
 <main class="d-flex flex-column justify-content-center align-items-center bg-primary" style="min-height: 100vh">
     <div class="row justify-content-center shadow rounded-4 p-3 bg-white mx-2" style="max-width: 400px;">
-        <?php echo $this->include('_templates/header'); ?>
-        <?php if (isset($this->data['error'])) :
-            echo $this->include('_templates/errors');
-        endif; ?>
+        <?= $this->include('_templates/header'); ?>
+        <?= $this->include('_templates/alerts'); ?>
         <form action="/auth/change-password" method="post" class="d-block col-12">
             <div class="mb-4">
                 <label for="password" class="form-label">New Password</label>

@@ -7,10 +7,7 @@ echo $this->include('_templates/head'); ?>
         <div class="col-lg-6 bg-white h-full pt-2">
             <?= $this->include('_templates/header'); ?>
             <form action="/auth/add-user" method="post" class="col-12 row mx-auto mt-2 h-full container-fluid">
-                <?php if (isset($this->data['error'])) :
-                    $this->setVar('error', $this->data['error']);
-                    echo $this->include('_templates/errors');
-                endif; ?>
+                <?= $this->include('_templates/alerts'); ?>
                 <div class="col-lg-6">
                     <div class="mb-4">
                         <label for="name" class="form-label">Name</label>
