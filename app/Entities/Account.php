@@ -12,4 +12,14 @@ class Account extends Entity
         'Username',
         'Password'
     ];
+    public function setUsername($value)
+    {
+        $this->attributes['Username'] = $value;
+        return $this;
+    }
+    public function setPassword($value)
+    {
+        $this->attributes['Password'] = $value;
+        return $this;
+    }
 }
