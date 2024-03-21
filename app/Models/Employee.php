@@ -14,21 +14,23 @@ class Employee extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'AccountID',
         'Name',
         'Surname',
         'Phone',
         'Email',
-        'DepartmentID'
+        'DepartmentID',
+        'Gender'
     ];
 
     protected bool $allowEmptyInserts = false;
 
     // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $useTimestamps = true;
+    protected $dateFormat    = 'int';
+    protected $createdField  = 'CreatedAt';
+    protected $updatedField  = 'UpdatedAt';
+    protected $deletedField  = 'DeletedAt';
 
     // Validation
     protected $validationRules      = [];
