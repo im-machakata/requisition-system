@@ -14,25 +14,6 @@ use Psr\Log\LoggerInterface;
 
 class Auth extends BaseController
 {
-    /**
-     * Stores the default auth view functions such as old
-     *
-     * @var array
-     */
-    private static $ADD_USER_CONFIG = [];
-
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
-    {
-        // perform any parent class functions
-        parent::initController($request, $response, $logger);
-
-        self::$ADD_USER_CONFIG['old'] = function ($key) {
-            return $this->request->getPost($key);
-        };
-        // there's no need to load departments when user is not logged in
-        if (!session()->get('user')) return;
-        self::$ADD_USER_CONFIG['departments'] = model(Department::class)->findAll();
-    }
     public function login()
     {
         return view('auth/login', self::$ADD_USER_CONFIG);
@@ -92,7 +73,7 @@ class Auth extends BaseController
         $userAccount->department = $departments->Name;
 
         // save the employee data to the session
-        session()->set('user', $userAccount);
+        $this->session->set('user', $userAccount);
 
         // redirect to the home page
         return $this->response->redirect('/');
@@ -163,7 +144,7 @@ class Auth extends BaseController
         }
 
         $accounts = model(Account::class);
-        $employee = session()->get('user');
+        $employee = $this->session->get('user');
         $employee->Password = trim($this->validator->getValidated()['password']);
 
         // hash password
@@ -180,9 +161,9 @@ class Auth extends BaseController
     {
 
         // if session does not exist, do not try to delete it, duh!
-        if (session()->get('user')) {
+        if ($this->session->get('user')) {
             // delete session data
-            session()->remove('user');
+            $this->session->remove('user');
         }
 
         // redirect to the home page
