@@ -20,4 +20,16 @@ class Requisition extends BaseController
                 ->findAll()
         ]);
     }
+
+    public function advancedSalariesIndex()
+    {
+        $pettyCashRequisitions = model(ModelsRequisition::class);
+        return view('forms/advanced-salary', [
+            ...self::$ADD_USER_CONFIG,
+            'requisitions' => $pettyCashRequisitions
+                ->where('Type', 'Advcanced_Salary')
+                ->where('AccountID', $this->session->get('user')->ID)
+                ->findAll()
+        ]);
+    }
 }
