@@ -84,4 +84,16 @@ class Requisition extends Model
             ->orderBy('CreatedAt')
             ->paginate(3);
     }
+    public function getTraveAndSubsistencies(?int $userID)
+    {
+        // if user id is present, filter by user
+        if (!is_null($userID)) {
+            $this->filterByUser($userID);
+        }
+
+        return $this
+            ->filterType(self::TRAVEL_AND_SUBSISTENCIES)
+            ->orderBy('CreatedAt')
+            ->paginate(3);
+    }
 }
