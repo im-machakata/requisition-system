@@ -2,8 +2,8 @@
 $this->setVar('title', 'Travel &amp; Subsistency');
 echo $this->include('_templates/head'); ?>
 <main class="bg-primary">
-    <div class="container-fluid" style="min-width: 100%">
-        <div class="row" style="min-height: 100vh; ">
+    <div class="container-fluid" style="min-width: 100%;">
+        <div class="row" style="min-height: 100vh;">
             <div class="col-lg-6 bg-white">
                 <div class="container-fluid">
                     <div class="row mt-5 mb-4">
@@ -17,7 +17,7 @@ echo $this->include('_templates/head'); ?>
                         <div class="text-body mb-4">
                             Submit a new travel and subsistence requisition
                         </div>
-                        <form action="/auth/add-user" method="post" class="col-12 row mt-2">
+                        <form action="/requests/travel-and-subsistencies" method="post" class="col-12 row mt-2">
                             <?= $this->include('_templates/alerts') ?>
                             <div class="col-lg-12">
                                 <div class="mb-4">
@@ -62,9 +62,9 @@ echo $this->include('_templates/head'); ?>
                         <h2 class="text-white h2 fw-bold">My Requisitions</h2>
                         <div class="text-white">
                             <?php if ($requisitions) : ?>
-                                You have <?= count($requisitions) ?> petty cash submittions
+                                You have <?= count($requisitions) ?> travel and subsistencies
                             <?php elseif (!$requisitions) : ?>
-                                You have not made any petty cash requisitions.
+                                You have not made any travel and subsistencies requisitions.
                             <?php endif; ?>
                         </div>
                         <?php foreach ($requisitions as $requisition) : ?>
