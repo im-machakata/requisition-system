@@ -60,4 +60,16 @@ class Requisition extends Model
     {
         return $this->where('Type', $requisitionType);
     }
+    public function getPettyCash(?int $userID)
+    {
+        // if user id is present, filter by user
+        if (!is_null($userID)) {
+            $this->filterByUser($userID);
+        }
+
+        return $this
+            ->filterType(self::PETTY_CASH)
+            ->orderBy('CreatedAt')
+            ->paginate(3);
+    }
 }
