@@ -32,7 +32,7 @@ class Requisition extends Migration
                 'type' => 'ENUM',
                 'constraint' => [
                     'Petty_Cash',
-                    'Travel_Subsistence',
+                    'Travel_Subsistencies',
                     'Advanced_Salary',
                 ],
             ],
