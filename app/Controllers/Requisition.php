@@ -19,6 +19,13 @@ class Requisition extends BaseController
      * @var ModelsRequisition
      */
     private $requisitions;
+    
+    /**
+     * Store requisition view parameters
+     *
+     * @var array
+     */
+    private static $VIEW_PARAMS = [];
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
@@ -31,13 +38,12 @@ class Requisition extends BaseController
         // we use a pointer so that we don't get stale data (which is null at initController)
         // but actually call the function and get the latest data
         self::$ADD_USER_CONFIG['pager'] = &$this->requisitions->pager;
+        self::$VIEW_PARAMS = self::$ADD_USER_CONFIG;
     }
     public function pettyCashIndex()
     {
-        return view('forms/petty-cash', [
-            ...self::$ADD_USER_CONFIG,
-            'requisitions' => $this->requisitions->getPettyCash($this->account->ID),
-        ]);
+        self::$VIEW_PARAMS['requisition'] = $this->requisitions->getPettyCash($this->account->ID);
+        return view('forms/petty-cash', self::$VIEW_PARAMS);
     }
     public function recordPettyCash()
     {
@@ -80,6 +86,39 @@ class Requisition extends BaseController
             'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID),
         ]);
     }
+    public function recordAdvancedSalaries()
+    {
+        $formIsValid = $this->validate([
+            'Amount' => 'required|numeric|min_length[1]|max_length[15]',
+            'Reason' => 'required|min_length[25]|max_length[255]'
+        ]);
+
+        // if form data is invalid, show errors
+        if (!$formIsValid) {
+            return view('forms/advanced-salary', [
+                ...self::$ADD_USER_CONFIG,
+                'error' => $this->validator->getErrors(),
+                'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID),
+            ]);
+        }
+
+        /* 
+        * SUGGESTION
+        * Check for duplicates for that specific day
+        **/
+
+        // fill in and save new petty cash requisition
+        $requisition = new EntitiesRequisition($this->validator->getValidated());
+        $requisition->setType($this->requisitions::ADVANCED_SALARY);
+        $requisition->setAccountID($this->account->ID);
+        $recorded = $this->requisitions->save($requisition);
+
+        return view('forms/advanced-salary', [
+            ...self::$ADD_USER_CONFIG,
+            'success' => 'Your request has been submitted.',
+            'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID),
+        ]);
+    }
 
     public function travelAndSubsistenciesIndex()
     {
@@ -105,7 +144,7 @@ class Requisition extends BaseController
                 'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
             ]);
         }
-        
+
         $requisition = new EntitiesRequisition($this->validator->getValidated());
         $requisition->setType($this->requisitions::TRAVEL_AND_SUBSISTENCIES);
         $requisition->setAccountID($this->account->ID);
