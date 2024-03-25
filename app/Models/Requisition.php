@@ -7,6 +7,9 @@ use CodeIgniter\Model;
 
 class Requisition extends Model
 {
+    const PETTY_CASH = 'Petty_Cash';
+    const ADVANCED_SALARY = 'Advanced_Salary';
+    const TRAVEL_AND_SUBSISTENCIES = 'Travel_Subsistencies';
     protected $table            = 'requisitions';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
@@ -48,4 +51,13 @@ class Requisition extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function filterByUser(int $userID)
+    {
+        return $this->where('AccountID', $userID);
+    }
+    public function filterType(string $requisitionType)
+    {
+        return $this->where('Type', $requisitionType);
+    }
 }
