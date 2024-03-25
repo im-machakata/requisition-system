@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Entities\Account;
 use App\Models\Department;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
@@ -45,6 +46,13 @@ abstract class BaseController extends Controller
     protected $session;
 
     /**
+     * Hold the current employee information from the session
+     *
+     * @var Account
+     */
+    protected $account;
+
+    /**
      * Stores the default auth view functions such as old
      *
      * @var array
@@ -68,6 +76,7 @@ abstract class BaseController extends Controller
         };
         // there's no need to load departments when user is not logged in
         if (!$this->session->get('user')) return;
+        $this->account = $this->session->get('user');
         self::$ADD_USER_CONFIG['departments'] = model(Department::class)->findAll();
     }
 }
