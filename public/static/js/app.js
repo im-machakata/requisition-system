@@ -3,6 +3,9 @@ $(function () {
         var toDate = $("#OutTo").val();
         var fromDate = $("#OutFrom").val();
 
+        // do not attempt to calculate date differences when one of the dates if missing
+        if (!toDate || !fromDate) return;
+
         // Parse the input date string into a Date object
         var dates = [
             new Date(fromDate),
