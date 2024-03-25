@@ -8,6 +8,7 @@ use App\Models\Requisition as ModelsRequisition;
 use CodeIgniter\Config\Services;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 use Psr\Log\LoggerInterface;
 
 class Requisition extends BaseController
@@ -84,7 +85,7 @@ class Requisition extends BaseController
     {
         return view('forms/travel-and-subsistency', [
             ...self::$ADD_USER_CONFIG,
-            'requisitions' => $this->requisitions->getTraveAndSubsistencies($this->account->ID),
+            'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
         ]);
     }
 
@@ -93,20 +94,26 @@ class Requisition extends BaseController
         $formIsValid = $this->validate([
             'Amount' => 'required|numeric|max_length[12]',
             'Reason' => 'required|min_length[25]|max_length[255]',
-            'From' => 'required|valid_date',
-            'To' => 'required|valid_date',
+            'OutFrom' => 'required|valid_date',
+            'OutTo' => 'required|valid_date',
+            'Days' => 'required|numeric|is_natural_no_zero'
         ]);
-
         if (!$formIsValid) {
-            return view('forms/petty-cash', [
+            return view('forms/travel-and-subsistency', [
                 ...self::$ADD_USER_CONFIG,
                 'error' => $this->validator->getErrors(),
                 'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
             ]);
         }
+        
+        $requisition = new EntitiesRequisition($this->validator->getValidated());
+        $requisition->setType($this->requisitions::TRAVEL_AND_SUBSISTENCIES);
+        $requisition->setAccountID($this->account->ID);
+        $this->requisitions->save($requisition);
 
         return view('forms/travel-and-subsistency', [
             ...self::$ADD_USER_CONFIG,
+            'success' => 'Requisition has been recorded.',
             'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
         ]);
     }
