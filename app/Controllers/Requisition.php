@@ -54,6 +54,11 @@ class Requisition extends BaseController
             ]);
         }
 
+        /* 
+        * SUGGESTION
+        * Check for duplicates for that specific day
+        **/
+
         // fill in and save new petty cash requisition
         $requisition = new EntitiesRequisition($this->validator->getValidated());
         $requisition->AccountID = $this->account->ID;
