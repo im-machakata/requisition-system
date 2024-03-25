@@ -1,4 +1,7 @@
 <?php
+
+use CodeIgniter\I18n\Time;
+
 $this->setVar('title', 'Travel &amp; Subsistency');
 echo $this->include('_templates/head'); ?>
 <main class="bg-primary">
@@ -21,32 +24,32 @@ echo $this->include('_templates/head'); ?>
                             <?= $this->include('_templates/alerts') ?>
                             <div class="col-lg-12">
                                 <div class="mb-4">
-                                    <label for="amount" class="form-label">Amount</label>
-                                    <input type="number" min="1" name="amount" id="amount" class="form-control" placeholder="50.00" required>
+                                    <label for="Amount" class="form-label">Amount</label>
+                                    <input type="number" min="1" name="Amount" id="Amount" class="form-control" placeholder="50.00" value="<?= $old('Amount') ?>" required>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="mb-4">
-                                    <label for="reason" class="form-label">Reason</label>
-                                    <textarea type="text" name="reason" id="reason" class="form-control" placeholder="I want to buy a new phone..." rows="4" required></textarea>
+                                    <label for="Reason" class="form-label">Reason</label>
+                                    <textarea type="text" name="Reason" id="Reason" class="form-control" placeholder="I want to buy a new phone..." rows="4" required><?= $old('Reason') ?></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-5">
                                 <div class="mb-4">
-                                    <label for="from" class="form-label">From</label>
-                                    <input type="date" name="from" id="from" class="form-control" placeholder="50.00" required>
+                                    <label for="OutFrom" class="form-label">From</label>
+                                    <input type="date" name="OutFrom" id="OutFrom" class="form-control" placeholder="50.00" min="<?= Time::parse('now')->format('Y-m-d') ?>" value="<?= $old('OutFrom') ?>" required>
                                 </div>
                             </div>
                             <div class="col-lg-5">
                                 <div class="mb-4">
-                                    <label for="to" class="form-label">To</label>
-                                    <input type="date" name="to" id="to" class="form-control" placeholder="50.00" required>
+                                    <label for="OutTo" class="form-label">To</label>
+                                    <input type="date" name="OutTo" id="OutTo" value="<?= $old('OutTo') ?>" class="form-control" min="<?= Time::parse('tomorrow')->format('Y-m-d') ?>" placeholder="50.00" required>
                                 </div>
                             </div>
                             <div class="col-lg-2">
                                 <div class="mb-4">
-                                    <label for="from" class="form-label">Days</label>
-                                    <input type="number" name="from" id="from" class="form-control" value="0" placeholder="5" readonly required>
+                                    <label for="Days" class="form-label">Days</label>
+                                    <input type="number" name="Days" id="Days" class="form-control" value="0" placeholder="5" value="<?= $old('Days') ?>" readonly>
                                 </div>
                             </div>
                             <div class="mb-2 col-12">
