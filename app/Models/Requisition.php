@@ -84,7 +84,7 @@ class Requisition extends Model
             ->orderBy('CreatedAt')
             ->paginate(3);
     }
-    public function getTraveAndSubsistencies(?int $userID)
+    public function getTravelAndSubsistencies(?int $userID)
     {
         // if user id is present, filter by user
         if (!is_null($userID)) {

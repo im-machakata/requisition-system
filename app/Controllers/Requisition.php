@@ -84,7 +84,30 @@ class Requisition extends BaseController
     {
         return view('forms/travel-and-subsistency', [
             ...self::$ADD_USER_CONFIG,
-            'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID)
+            'requisitions' => $this->requisitions->getTraveAndSubsistencies($this->account->ID),
+        ]);
+    }
+
+    public function recordTravelAndSubsistencies()
+    {
+        $formIsValid = $this->validate([
+            'Amount' => 'required|numeric|max_length[12]',
+            'Reason' => 'required|min_length[25]|max_length[255]',
+            'From' => 'required|valid_date',
+            'To' => 'required|valid_date',
+        ]);
+
+        if (!$formIsValid) {
+            return view('forms/petty-cash', [
+                ...self::$ADD_USER_CONFIG,
+                'error' => $this->validator->getErrors(),
+                'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
+            ]);
+        }
+
+        return view('forms/travel-and-subsistency', [
+            ...self::$ADD_USER_CONFIG,
+            'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
         ]);
     }
 }
