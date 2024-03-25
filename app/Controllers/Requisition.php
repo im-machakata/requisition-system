@@ -69,7 +69,6 @@ class Requisition extends BaseController
             ...self::$ADD_USER_CONFIG,
             'success' => 'Petty cash has been recorded.',
             'requisitions' => $this->requisitions->getPettyCash($this->account->ID),
-            'pager' => $this->requisitions->pager
         ]);
     }
 
