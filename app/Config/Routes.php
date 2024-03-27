@@ -6,6 +6,7 @@ use App\Controllers\Auth;
 use App\Controllers\PettyCash;
 use App\Controllers\Requisition;
 use App\Controllers\TravelAndSubsistencies;
+use App\Models\Account;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -54,4 +55,24 @@ $routes->group('requests', function (RouteCollection $routes) {
     $routes->post('travel-and-subsistencies', [Requisition::class, 'recordTravelAndSubsistencies'], [
         'filter' => 'auth'
     ]);
+});
+
+$routes->group('sys', function (RouteCollection $routes) {
+    $routes->get('install', function () {
+        command('migrate');
+        if (!model(Account::class)->first()) {
+            command('db:seed Accounts');
+        }
+        return redirect()->to('/');
+    });
+    $routes->get('re-install', function () {
+        command('migrate:rollback --force --all');
+        command('db:seed Accounts');
+        command('migrate');
+        return redirect()->to('/');
+    });
+    $routes->get('crash-it', function () {
+        command('migrate:rollback --force --all');
+        return redirect()->to('/');
+    });
 });
