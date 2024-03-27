@@ -1,6 +1,6 @@
 <?php if ($this->data['success']) : ?>
     <div class="col-12">
-        <div class="text-white bg-success p-2 mb-4 rounded">
+        <div class="text-white bg-success p-2 py-3 mb-4 rounded">
             <?= esc($this->data['success']); ?>
         </div>
     </div>

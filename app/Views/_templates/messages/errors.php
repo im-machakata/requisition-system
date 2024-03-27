@@ -1,6 +1,6 @@
 <?php if ($this->data['error']) : ?>
     <div class="col-12">
-        <div class="text-white bg-danger p-2 mb-4 rounded">
+        <div class="text-white bg-danger p-2 py-3 mb-4 rounded">
             <strong>Error:</strong>
             <?php
             $errors = $this->data['error'];
