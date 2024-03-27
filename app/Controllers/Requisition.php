@@ -19,7 +19,7 @@ class Requisition extends BaseController
      * @var ModelsRequisition
      */
     private $requisitions;
-    
+
     /**
      * Store requisition view parameters
      *
@@ -42,23 +42,22 @@ class Requisition extends BaseController
     }
     public function pettyCashIndex()
     {
-        self::$VIEW_PARAMS['requisition'] = $this->requisitions->getPettyCash($this->account->ID);
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions->getPettyCash($this->account->ID);
         return view('forms/petty-cash', self::$VIEW_PARAMS);
     }
     public function recordPettyCash()
     {
         $formIsValid = $this->validate([
             'Amount' => 'required|numeric|min_length[1]|max_length[15]',
-            'Reason' => 'required|min_length[15]|max_length[255]'
+            'Reason' => 'required|min_length[25]|max_length[255]'
         ]);
 
         // if form data is invalid, show errors
         if (!$formIsValid) {
-            return view('forms/petty-cash', [
-                ...self::$ADD_USER_CONFIG,
-                'error' => $this->validator->getErrors(),
-                'requisitions' => $this->requisitions->getPettyCash($this->account->ID),
-            ]);
+            self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+                ->getPettyCash($this->account->ID);
+            self::$VIEW_PARAMS['error'] = $this->validator->getErrors();
+            return view('forms/petty-cash', self::$VIEW_PARAMS);
         }
 
         /* 
@@ -68,23 +67,22 @@ class Requisition extends BaseController
 
         // fill in and save new petty cash requisition
         $requisition = new EntitiesRequisition($this->validator->getValidated());
-        $requisition->AccountID = $this->account->ID;
-        $requisition->Type = $this->requisitions::PETTY_CASH;
-        $recorded = $this->requisitions->save($requisition);
+        $requisition->setAccountID($this->account->ID);
+        $requisition->setType($this->requisitions::PETTY_CASH);
+        $this->requisitions->save($requisition);
 
-        return view('forms/petty-cash', [
-            ...self::$ADD_USER_CONFIG,
-            'success' => 'Petty cash has been recorded.',
-            'requisitions' => $this->requisitions->getPettyCash($this->account->ID),
-        ]);
+        // save responses
+        self::$VIEW_PARAMS['success'] = 'Petty cash has been recorded.';
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+            ->getPettyCash($this->account->ID);
+        return view('forms/petty-cash', self::$VIEW_PARAMS);
     }
 
     public function advancedSalariesIndex()
     {
-        return view('forms/advanced-salary', [
-            ...self::$ADD_USER_CONFIG,
-            'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID),
-        ]);
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+            ->getAdvancedSalaries($this->account->ID);
+        return view('forms/advanced-salary', self::$VIEW_PARAMS);
     }
     public function recordAdvancedSalaries()
     {
@@ -95,11 +93,10 @@ class Requisition extends BaseController
 
         // if form data is invalid, show errors
         if (!$formIsValid) {
-            return view('forms/advanced-salary', [
-                ...self::$ADD_USER_CONFIG,
-                'error' => $this->validator->getErrors(),
-                'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID),
-            ]);
+            self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+                ->getAdvancedSalaries($this->account->ID);
+            self::$VIEW_PARAMS['error'] = $this->validator->getErrors();
+            return view('forms/advanced-salary', self::$VIEW_PARAMS);
         }
 
         /* 
@@ -113,19 +110,17 @@ class Requisition extends BaseController
         $requisition->setAccountID($this->account->ID);
         $recorded = $this->requisitions->save($requisition);
 
-        return view('forms/advanced-salary', [
-            ...self::$ADD_USER_CONFIG,
-            'success' => 'Your request has been submitted.',
-            'requisitions' => $this->requisitions->getAdvancedSalaries($this->account->ID),
-        ]);
+        self::$VIEW_PARAMS['success'] = 'Your request has been submitted.';
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+            ->getAdvancedSalaries($this->account->ID);
+        return view('forms/advanced-salary', self::$VIEW_PARAMS);
     }
 
     public function travelAndSubsistenciesIndex()
     {
-        return view('forms/travel-and-subsistency', [
-            ...self::$ADD_USER_CONFIG,
-            'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
-        ]);
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+            ->getTravelAndSubsistencies($this->account->ID);
+        return view('forms/travel-and-subsistency', self::$VIEW_PARAMS);
     }
 
     public function recordTravelAndSubsistencies()
