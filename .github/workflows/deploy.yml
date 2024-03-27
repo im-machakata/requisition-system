@@ -1,0 +1,54 @@
+on:
+  push:
+    branches:
+      - main
+
+name: Deploy ORS
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      uses: php-actions/composer@v6
+      with:
+        php_version: "8.2"
+        command: install --no-dev
+    
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASS }}
+        server-dir: ./htdocs/
+        exclude: |
+          .git*
+          .git*/**
+          .github*
+          .github/**
+          .vscode*
+          .vscode/**
+          tests*
+          tests/**
+          .env
+          .gitpod.yml
+          .phpunit.result.cache
+          builds
+          preload.php
+          starter.ini
+          
+    - name: Run Migrations 
+      id: getRequest
+      uses: skgandikota/FetchUrl@v1.3
+      with:
+        url: "https://ors-zqetri23.isaac.co.zw/"
+
+    - name: Get Migration Results 
+      run: |
+          echo status: "${{ steps.getRequest.outputs.status }}"
+          echo date: ${{ (fromJSON(steps.getRequest.outputs.headers)).date[0] }}
+          echo responseBody: "${{ steps.getRequest.outputs.body }}"
