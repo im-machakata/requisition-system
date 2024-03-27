@@ -16,7 +16,7 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: "8.2"
-        command: install --no-dev
+        command: install --no-dev --ignore-platform-req=ext-intl
     
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
