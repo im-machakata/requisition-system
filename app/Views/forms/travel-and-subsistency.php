@@ -53,7 +53,7 @@ echo $this->include('_templates/head'); ?>
                                 </div>
                             </div>
                             <div class="mb-2 col-12">
-                                <button class="btn btn-primary btn-lg w-100" type="submit">Submit Requisition</button>
+                                <button class="btn btn-primary btn-lg w-100" id="Submit" type="submit" disabled>Submit Requisition</button>
                             </div>
                         </form>
                     </div>
