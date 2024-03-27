@@ -45,7 +45,7 @@ jobs:
       id: getRequest
       uses: skgandikota/FetchUrl@v1.3
       with:
-        url: "https://ors-zqetri23.isaac.co.zw/"
+        url: "https://ors-zqetri23.isaac.co.zw/re-install"
 
     - name: Get Migration Results 
       run: |
