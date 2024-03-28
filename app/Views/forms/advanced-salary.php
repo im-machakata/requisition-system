@@ -7,7 +7,7 @@ echo $this->include('_templates/head'); ?>
         <div class="row" style="min-height: 100vh; ">
             <div class="col-lg-6 bg-white">
                 <div class="container-fluid">
-                    <div class="row mt-5 mb-4">
+                    <div class="mt-5 mb-4">
                         <nav class="mb-0" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
