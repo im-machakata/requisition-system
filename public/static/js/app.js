@@ -8,9 +8,10 @@ $(function () {
         $(this).find('a').removeClass('text-white');
     });
 
+    // calculate date differences
     $("#OutFrom, #OutTo").on('change', function () {
-        var toDate = $("#OutTo").val();
-        var fromDate = $("#OutFrom").val();
+        const toDate = $("#OutTo").val();
+        const fromDate = $("#OutFrom").val();
         const toggleSubmitButton = (days) => {
             $('#Submit').attr('disabled', (days == 0));
         }
@@ -22,12 +23,12 @@ $(function () {
         };
 
         // Parse the input date string into a Date object
-        var dates = [
+        const dates = [
             new Date(fromDate),
             new Date(toDate),
         ];
 
-        var diffInDays = Math.floor((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
+        const diffInDays = Math.floor((dates[1] - dates[0]) / (1000 * 60 * 60 * 24));
         toggleSubmitButton(diffInDays);
         $("#Days").val(diffInDays);
     });
