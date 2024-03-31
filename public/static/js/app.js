@@ -1,4 +1,13 @@
 $(function () {
+    // change background color on hover menu card
+    $('.menu .card').on('mouseenter', function () {
+        $(this).addClass('bg-primary');
+        $(this).find('a').addClass('text-white');
+    }).on('mouseleave', function () {
+        $(this).removeClass('bg-primary');
+        $(this).find('a').removeClass('text-white');
+    });
+
     $("#OutFrom, #OutTo").on('change', function () {
         var toDate = $("#OutTo").val();
         var fromDate = $("#OutFrom").val();

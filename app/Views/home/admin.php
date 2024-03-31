@@ -6,7 +6,7 @@ echo $this->include('_templates/head'); ?>
         <?= $this->include('_templates/header'); ?>
         <?= $this->include('_templates/user-type'); ?>
         <?= $this->include('_templates/alerts'); ?>
-        <div class="col-12 row g-4 mb-4">
+        <div class="col-12 row g-4 mb-4 menu">
             <div class="col-sm-6 col-lg-3">
                 <div class="card shadow border-primary border-0">
                     <div class="card-body">
