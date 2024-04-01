@@ -43,4 +43,16 @@ class Account extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    /**
+     * Returns an array of employees and their departments 6 at a time
+     *
+     * @return array|null
+     */
+    public function getUsers()
+    {
+        return $this->join('employees', 'AccountID =  accounts.ID')
+            ->join('departments', 'DepartmentID = departments.ID')
+            ->paginate(6);
+    }
 }
