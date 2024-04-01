@@ -89,10 +89,12 @@ echo $this->include('_templates/head'); ?>
                 </div>
                 <?php foreach ($users as $user) : ?>
                     <div class="blockquote bg-white my-3 p-2 px-3 rounded">
-                        <div class="small text-primary"><?= $user->Username ?></div>
+                        <div class="small text-primary"><strong><?= $user->Username ?>.</strong></div>
                         <div class="h6 font-bold font-sm mb-2"><?= $user->Name . ' ' . $user->Surname ?></div>
                     </div>
                 <?php endforeach; ?>
+
+                <?= $pager ? $pager->links() : '' ?>
             </div>
         </div>
     </div>
