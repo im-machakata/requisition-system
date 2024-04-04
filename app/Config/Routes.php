@@ -21,47 +21,55 @@ $routes->group('auth', function (RouteCollection $routes) {
     $routes->post('login', [Auth::class, 'createSession']);
 
     $routes->get('add-user', [Auth::class, 'register'], [
-        'filter' => 'auth:Admin'
+        'filter' => 'auth:Admin',
+        'as' => 'add-user-page'
     ]);
     $routes->post('add-user', [Auth::class, 'createAccount'], [
         'filter' => 'auth:Admin'
     ]);
 
+    $routes->get('view-user-report', [Auth::class, 'userReports'], [
+        'filter' => 'auth:Admin'
+    ]);
+
     $routes->get('change-password', [Auth::class, 'viewPassword'], [
-        'filter' => 'auth'
+        'filter' => 'auth',
+        'as' => 'view.change-password'
     ]);
     $routes->post('change-password', [Auth::class, 'changePassword'], [
         'filter' => 'auth'
     ]);
 });
 
-$routes->group('requests', function (RouteCollection $routes) {
-    $routes->get('advanced-salaries', [Requisition::class, 'advancedSalariesIndex'], [
-        'filter' => 'auth'
-    ]);
-    $routes->post('advanced-salaries', [Requisition::class, 'recordAdvancedSalaries'], [
-        'filter' => 'auth'
-    ]);
+$routes->get('advanced-salaries', [Requisition::class, 'advancedSalariesIndex'], [
+    'filter' => 'auth'
+]);
+$routes->post('advanced-salaries', [Requisition::class, 'recordAdvancedSalaries'], [
+    'filter' => 'auth'
+]);
 
-    $routes->get('petty-cash', [Requisition::class, 'pettyCashIndex'], [
-        'filter' => 'auth'
-    ]);
-    $routes->post('petty-cash', [Requisition::class, 'recordPettyCash'], [
-        'filter' => 'auth'
-    ]);
+$routes->get('petty-cash', [Requisition::class, 'pettyCashIndex'], [
+    'filter' => 'auth'
+]);
+$routes->post('petty-cash', [Requisition::class, 'recordPettyCash'], [
+    'filter' => 'auth'
+]);
 
-    $routes->get('travel-and-subsistencies', [Requisition::class, 'travelAndSubsistenciesIndex'], [
-        'filter' => 'auth'
-    ]);
-    $routes->post('travel-and-subsistencies', [Requisition::class, 'recordTravelAndSubsistencies'], [
-        'filter' => 'auth'
-    ]);
-});
+$routes->get('travel-and-subsistencies', [Requisition::class, 'travelAndSubsistenciesIndex'], [
+    'filter' => 'auth'
+]);
+$routes->post('travel-and-subsistencies', [Requisition::class, 'recordTravelAndSubsistencies'], [
+    'filter' => 'auth'
+]);
+
+$routes->get('user-reports', [Requisition::class, 'viewUserReportsIndex'], [
+    'filter' => 'auth'
+]);
 
 $routes->group('sys', function (RouteCollection $routes) {
     $routes->get('install', function () {
         command('migrate');
-        if(!model(Department::class)->first()) {
+        if (!model(Department::class)->first()) {
             command('db:seed Departments');
         }
         if (!model(Account::class)->first()) {

@@ -20,7 +20,7 @@ echo $this->include('_templates/head'); ?>
             <div class="col-sm-6 col-lg-3">
                 <div class="card shadow border-primary border-0">
                     <div class="card-body">
-                        <a href="/requests/advanced-salaries" class="text-decoration-none text-center">
+                        <a href="/advanced-salaries" class="text-decoration-none text-center">
                             <i class="fa-thin fa-money-check-dollar-pen fa-6x my-0 d-block"></i>
                             <h3 class="card-title h5 mb-3">Advanced Salary</h3>
                         </a>
@@ -30,7 +30,7 @@ echo $this->include('_templates/head'); ?>
             <div class="col-sm-6 col-lg-3">
                 <div class="card shadow border-primary border-0">
                     <div class="card-body">
-                        <a href="/requests/travel-and-subsistencies" class="text-decoration-none text-center">
+                        <a href="/travel-and-subsistencies" class="text-decoration-none text-center">
                             <i class="fa-thin fa-plane-departure fa-6x my-0 d-block"></i>
                             <h3 class="card-title h5 mb-3">Travel &amp; Subsistences</h3>
                         </a>
@@ -40,7 +40,7 @@ echo $this->include('_templates/head'); ?>
             <div class="col-sm-6 col-lg-3">
                 <div class="card shadow border-primary border-0">
                     <div class="card-body">
-                        <a href="/requests/petty-cash" class="text-decoration-none text-center">
+                        <a href="/petty-cash" class="text-decoration-none text-center">
                             <i class="fa-thin fa-money-bill-1 fa-6x my-0 d-block"></i>
                             <h3 class="card-title h5 mb-3">Petty Cash</h3>
                         </a>
