@@ -18,7 +18,7 @@ echo $this->include('_templates/head'); ?>
                         <div class="text-body mb-4">
                             Submit a new advanced salary requisition
                         </div>
-                        <form action="/requests/advanced-salaries" method="post" class="col-12 row mt-2">
+                        <form action="/advanced-salaries" method="post" class="col-12 row mt-2">
                             <?= $this->include('_templates/alerts'); ?>
                             <div class="col-lg-12">
                                 <div class="mb-4">

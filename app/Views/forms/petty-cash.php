@@ -18,7 +18,7 @@ echo $this->include('_templates/head'); ?>
                         <div class="text-body mb-4">
                             Submit a new petty cash requisition
                         </div>
-                        <form action="/requests/petty-cash" method="post" class="col-12 row mt-2">
+                        <form action="/petty-cash" method="post" class="col-12 row mt-2">
                             <?= $this->include('_templates/alerts'); ?>
                             <div class="col-lg-12">
                                 <div class="mb-4">
