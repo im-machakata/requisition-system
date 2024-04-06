@@ -104,7 +104,11 @@ class Requisition extends Model
     }
     public function getRequisitions()
     {
-        $this->orderBy('CreatedAt');
+        $this->orderBy('requisitions.CreatedAt', 'DESC');
         return $this;
+    }
+    public function getOwners()
+    {
+        return $this->join('employees as emp', 'emp.AccountID = requisitions.AccountID');
     }
 }
