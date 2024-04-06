@@ -24,7 +24,8 @@ class Auth extends BaseController
         $accounts = model(Account::class);
         return view('auth/add-user', [
             ...self::$ADD_USER_CONFIG,
-            'users' => $accounts->join('employees', 'AccountID =  accounts.ID')->findAll()
+            'users' => $accounts->getUsers(),
+            'pager' => $accounts->pager
         ]);
     }
 
@@ -129,6 +130,15 @@ class Auth extends BaseController
     public function viewPassword()
     {
         return view('auth/change-password');
+    }
+    public function userReports()
+    {
+        $accounts = model(Account::class);
+        return view('auth/user-reports', [
+            ...self::$ADD_USER_CONFIG,
+            'users' => $accounts->getUsers(),
+            'pager' => $accounts->pager
+        ]);
     }
 
     public function changePassword()
