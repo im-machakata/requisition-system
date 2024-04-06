@@ -1,4 +1,9 @@
 $(function () {
+    // prevent form submittion if id is empty
+    $('#UpdateRequisition').on('click', function (event) {
+        if (!$('#ID').val()) event.preventDefault();
+    });
+    
     // register bootstrap tooltips
     $(document).find('[data-bs-toggle=tooltip]').map(function () {
         new bootstrap.Tooltip(this);
