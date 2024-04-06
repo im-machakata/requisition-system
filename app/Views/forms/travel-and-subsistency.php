@@ -85,7 +85,7 @@ echo $this->include('_templates/head'); ?>
                                 </div>
                                 <div class="card-body">
                                     <p class="card-text mb-0">
-                                        <?= $requisition->Reason ?>
+                                        <?= esc($requisition->Reason) ?>
                                     </p>
                                     <p class="card-text">
                                         <small class="text-body-secondary">Last Updated: <?= $requisition->UpdatedAt->humanize() ?></small>

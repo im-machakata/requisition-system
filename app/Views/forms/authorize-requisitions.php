@@ -15,27 +15,34 @@ echo $this->include('_templates/head'); ?>
                             </ol>
                         </nav>
                         <h1 class="text-body h2 fw-bold">Recent Requisitions</h1>
-                        <div class="text-body mb-2">
+                        <div class="text-body mb-4">
                             Here's a list of the recent requisitions requiring your attention.
                         </div>
                         <div class="row">
                             <?php foreach ($requisitions as $requisition) : ?>
-                                <div class="col-lg-6">
-                                    <div class="card requisition border-dark my-3">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card requisition border-dark h-100">
                                         <div class="card-header bg-dark text-white">
                                             <div class="d-flex">
                                                 <div class="flex-fill fw-bold">
-                                                    <i class="fa-solid fa-dollar-sign"></i> <span class="amount"><?= number_format($requisition->Amount, 2) ?></span> USD
+                                                    <i class="fa-solid fa-dollar-sign"></i>
+                                                    <span class="amount">
+                                                        <?= number_format($requisition->Amount, 2) ?>
+                                                    </span> USD
                                                 </div>
                                                 <div class="float-end">
-                                                    <span data-bs-title="<?= $requisition->Names ?>" class="badge bg-white text-body user" data-bs-toggle="tooltip"><i class="fa-solid fa-user"></i></span>
-                                                    <a href="#edit-status" class="badge bg-white text-body edit-status"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <span data-bs-title="<?= $requisition->Names ?>" class="badge bg-white text-body user" data-bs-toggle="tooltip">
+                                                        <i class="fa-solid fa-user"></i>
+                                                    </span>
+                                                    <a href="#edit-status" class="badge bg-white text-body edit-status">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
                                             <p class="card-text mb-0 reason">
-                                                <?= $requisition->Reason ?>
+                                                <?= esc($requisition->Reason) ?>
                                             </p>
                                             <p class="card-text">
                                                 <small class="text-body-secondary">Last Updated: <?= $requisition->UpdatedAt->humanize() ?></small>
@@ -91,7 +98,7 @@ echo $this->include('_templates/head'); ?>
                                         </div>
                                     </div>
                                     <div class="mb-2 col-12">
-                                        <button class="btn btn-primary btn-lg w-100" type="submit">Update Requisition</button>
+                                        <button id="UpdateRequisition" class="btn btn-primary btn-lg w-100" type="submit">Update Requisition</button>
                                     </div>
                                 </div>
                             </div>
