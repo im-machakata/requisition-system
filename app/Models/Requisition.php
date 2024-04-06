@@ -52,8 +52,14 @@ class Requisition extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function filterByUser(int $userID)
+    public function filterByUser(int|string $userID)
     {
+        if (is_string($userID)) {
+            $userID = model(Account::class)
+                ->where('Username', $userID)
+                ->first()
+                ->ID;
+        }
         return $this->where('AccountID', $userID);
     }
     public function filterType(string $requisitionType)
@@ -95,5 +101,10 @@ class Requisition extends Model
             ->filterType(self::TRAVEL_AND_SUBSISTENCIES)
             ->orderBy('CreatedAt')
             ->paginate(3);
+    }
+    public function getRequisitions()
+    {
+        $this->orderBy('CreatedAt');
+        return $this;
     }
 }

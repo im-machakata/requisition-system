@@ -44,6 +44,13 @@ class Account extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function filterByUser(int|string $userID)
+    {
+        if (is_string($userID)) {
+            return $this->where('Username', $userID);
+        }
+        return $this->where('ID', $userID);
+    }
     /**
      * Returns an array of employees and their departments 6 at a time
      *

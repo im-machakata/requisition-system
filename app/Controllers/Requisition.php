@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Entities\Account;
 use App\Entities\Requisition as EntitiesRequisition;
+use App\Models\Account as ModelsAccount;
 use App\Models\Requisition as ModelsRequisition;
 use CodeIgniter\Config\Services;
 use CodeIgniter\HTTP\RequestInterface;
@@ -149,6 +151,36 @@ class Requisition extends BaseController
             ...self::$ADD_USER_CONFIG,
             'success' => 'Requisition has been recorded.',
             'requisitions' => $this->requisitions->getTravelAndSubsistencies($this->account->ID),
+        ]);
+    }
+
+    public function viewUserReportsIndex()
+    {
+        $results = [];
+        $account = new Account($this->request->getGet());
+        $usernames = model(ModelsAccount::class)
+            ->select('Username, CONCAT(employees.Name," ",Surname) AS Names')
+            ->getUsers(false);
+
+        if ($account->Username) {
+            // populate results
+            $results = model(ModelsRequisition::class)
+                ->filterByUser($account->Username)
+                ->getRequisitions()
+                ->findAll();
+
+            // get users names
+            $account->Names = model(ModelsAccount::class)
+                ->select('CONCAT(employees.Name," ",Surname) AS Names')
+                ->filterByUser($account->Username)
+                ->getUsers(false)[0]->Names;
+        }
+
+        return view('forms/user-reports', [
+            ...self::$VIEW_PARAMS,
+            'results' => $results,
+            'usernames' => $usernames,
+            'account' => $account
         ]);
     }
 }
