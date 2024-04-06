@@ -7,7 +7,13 @@ use CodeIgniter\Entity\Entity;
 class Requisition extends Entity
 {
     protected $datamap = [];
-    protected $dates   = ['CreatedAt', 'UpdatedAt', 'DeletedAt'];
+    protected $dates   = [
+        'CreatedAt',
+        'UpdatedAt',
+        'DeletedAt',
+        'OutFrom',
+        'OutTo'
+    ];
     protected $casts   = [];
 
     public function setType(string $type)
