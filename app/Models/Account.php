@@ -49,10 +49,11 @@ class Account extends Model
      *
      * @return array|null
      */
-    public function getUsers()
+    public function getUsers(bool $paginate = true)
     {
-        return $this->join('employees', 'AccountID =  accounts.ID')
-            ->join('departments', 'DepartmentID = departments.ID')
-            ->paginate(6);
+        $this->join('employees', 'AccountID =  accounts.ID')
+            ->join('departments', 'DepartmentID = departments.ID');
+        if ($paginate) return $this->paginate(6);
+        return $this->findAll();
     }
 }
