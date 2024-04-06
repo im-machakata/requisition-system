@@ -1,6 +1,5 @@
 <?php
 extract($this->data);
-// dd($username);
 $this->setVar('title', 'User Reports');
 echo $this->include('_templates/head'); ?>
 <main class="bg-primary">
@@ -44,7 +43,7 @@ echo $this->include('_templates/head'); ?>
             <div class="col-lg-6">
                 <div class="container-fluid">
                     <div class="mt-5 mb-4 pt-lg-4">
-                        <h2 class="text-white h2 fw-bold">My Advanced Requisitions</h2>
+                        <h2 class="text-white h2 fw-bold">User Requisitions</h2>
                         <div class="text-white">
                             <?php if ($results && $account->Username) : ?>
                                 Showing you <?= count($results) ?> submittions by <?= $account->Names ?>
