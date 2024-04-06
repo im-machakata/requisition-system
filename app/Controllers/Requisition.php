@@ -183,4 +183,21 @@ class Requisition extends BaseController
             'account' => $account
         ]);
     }
+
+    public function authorizeRequisitionsIndex()
+    {
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+            ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
+            ->getRequisitions()
+            ->getOwners()
+            ->paginate(6);
+        return view('forms/authorize-requisitions', self::$VIEW_PARAMS);
+    }
+
+    public function authorizeRequisitions()
+    {
+        return view('forms/authorize-requisitions', [
+            ...self::$VIEW_PARAMS,
+        ]);
+    }
 }
