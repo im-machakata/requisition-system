@@ -1,4 +1,13 @@
 $(function () {
+    // edit requisition status
+    $('.requisition .edit-status').on('click', function (e) {
+        e.preventDefault();
+        const requisition = $(this).parent().parent().parent().parent();
+        $('#Amount').text(requisition.find('.amount').text());
+        $('#Reason').text(requisition.find('.reason').text().trim());
+        $('#ID').val(requisition.find('.id').val().trim());
+    })
+
     // change background color on hover menu card
     $('.menu .card').on('mouseenter', function () {
         $(this).addClass('bg-primary');
