@@ -57,7 +57,7 @@ echo $this->include('_templates/head'); ?>
                             <div class="card border-0 my-3">
                                 <div class="card-header bg-dark border-dark text-white">
                                     <div class="d-flex">
-                                        <div class="flex-fill">
+                                        <div class="flex-fill fw-bold">
                                             Amount: $<?= number_format($requisition->Amount, 2) ?> USD
                                         </div>
                                         <div class="float-end">
@@ -73,6 +73,20 @@ echo $this->include('_templates/head'); ?>
                                     <p class="card-text">
                                         <small class="text-body-secondary">Last Updated: <?= $requisition->UpdatedAt->humanize() ?></small>
                                     </p>
+                                </div>
+                                <div class="card-footer border-dark">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <small>From: <?= $requisition->OutFrom ? $requisition->OutFrom->toLocalizedString('MMM d,  yyyy') : 'N/A' ?>
+                                            </small>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <small>To: <?= $requisition->OutTo ? $requisition->OutTo->toLocalizedString('MMM d,  yyyy') : 'N/A' ?></small>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <small>Type: <?= str_replace('_', ' ', $requisition->Type) ?></small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
