@@ -1,4 +1,9 @@
 $(function () {
+    // register bootstrap tooltips
+    $(document).find('[data-bs-toggle=tooltip]').map(function () {
+        new bootstrap.Tooltip(this);
+    });
+
     // edit requisition status
     $('.requisition .edit-status').on('click', function (e) {
         e.preventDefault();

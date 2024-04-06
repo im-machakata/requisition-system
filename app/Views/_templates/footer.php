@@ -7,7 +7,7 @@ if (!function_exists('get_file_date')) {
     }
 } ?>
 </body>
-<script src="/static/js/bootstrap.min.js?version=5.3.3" defer></script>
+<script src="/static/js/bootstrap.bundle.min.js?version=5.3.3" defer></script>
 <script src="/static/js/app.js?cache=<?= get_file_date('static/js/app.js') ?>" defer async></script>
 <?php if (!url_is('auth/login')) : ?>
     <footer class="border-top bg-light">
