@@ -66,6 +66,13 @@ $routes->get('user-reports', [Requisition::class, 'viewUserReportsIndex'], [
     'filter' => 'auth:Supervisor'
 ]);
 
+$routes->get('authorize-requisitions', [Requisition::class, 'authorizeRequisitionsIndex'], [
+    'filter' => 'auth:Supervisor'
+]);
+$routes->post('authorize-requisitions', [Requisition::class, 'authorizeRequisitions'], [
+    'filter' => 'auth:Supervisor'
+]);
+
 $routes->group('sys', function (RouteCollection $routes) {
     $routes->get('install', function () {
         command('migrate');
