@@ -164,7 +164,7 @@ class Requisition extends BaseController
 
         if ($account->Username) {
             // populate results
-            $results = model(ModelsRequisition::class)
+            $results = $this->requisitions
                 ->filterByUser($account->Username)
                 ->getRequisitions()
                 ->findAll();
@@ -188,6 +188,7 @@ class Requisition extends BaseController
     {
         self::$VIEW_PARAMS['requisitions'] = $this->requisitions
             ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
+            ->where('Status', 'Submitted')
             ->getRequisitions()
             ->getOwners()
             ->paginate(6);
