@@ -63,7 +63,7 @@ $routes->post('travel-and-subsistencies', [Requisition::class, 'recordTravelAndS
 ]);
 
 $routes->get('user-reports', [Requisition::class, 'viewUserReportsIndex'], [
-    'filter' => 'auth'
+    'filter' => 'auth:Supervisor'
 ]);
 
 $routes->group('sys', function (RouteCollection $routes) {
