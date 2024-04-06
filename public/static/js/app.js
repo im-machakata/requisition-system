@@ -5,12 +5,14 @@ $(function () {
     });
 
     // edit requisition status
-    $('.requisition .edit-status').on('click', function (e) {
-        e.preventDefault();
-        const requisition = $(this).parent().parent().parent().parent();
-        $('#Amount').text(requisition.find('.amount').text());
-        $('#Reason').text(requisition.find('.reason').text().trim());
-        $('#ID').val(requisition.find('.id').val().trim());
+    $('.requisition .edit-status').on('click', function (event) {
+        event.preventDefault();
+        const requisitionCard = $(this).parent().parent().parent().parent();
+        $('#Amount').text(requisitionCard.find('.amount').text());
+        $('#Reason').text(requisitionCard.find('.reason').text().trim());
+        $('#User').text(requisitionCard.find('.user').data('bs-title').trim());
+        $('#ID').val(requisitionCard.find('.id').val().trim());
+        $('#StatusSubmitted').prop('checked', true);
     })
 
     // change background color on hover menu card
