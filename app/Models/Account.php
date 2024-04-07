@@ -58,8 +58,9 @@ class Account extends Model
      */
     public function getUsers(bool $paginate = true)
     {
-        $this->join('employees', 'AccountID =  accounts.ID')
-            ->join('departments', 'DepartmentID = departments.ID');
+        $this->select('Username, emp.Name, emp.Surname, dep.Name AS DepartmentName, DepartmentID');
+        $this->join('employees as emp', 'AccountID =  accounts.ID')
+            ->join('departments as dep', 'DepartmentID = dep.ID');
         if ($paginate) return $this->paginate(6);
         return $this->findAll();
     }
