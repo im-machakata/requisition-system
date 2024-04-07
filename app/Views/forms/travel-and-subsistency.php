@@ -79,7 +79,7 @@ echo $this->include('_templates/head'); ?>
                                         </div>
                                         <div class="float-end">
                                             <span class="badge bg-primary"><?= str_replace('_', ' ', $requisition->Status) ?></span>
-                                            <span class="badge bg-primary">Delete</span>
+                                            <!-- <span class="badge bg-primary">Delete</span> -->
                                         </div>
                                     </div>
                                 </div>
