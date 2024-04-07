@@ -94,10 +94,10 @@ echo $this->include('_templates/head'); ?>
                                             <label class="btn btn-outline-primary" for="StatusSubmitted">Submitted</label>
                                             <input type="radio" class="btn-check" name="Status" value="<?= $statuses['Approve'] ?>" id="StatusApprove" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="StatusApprove">Approve Requisition</label>
-                                            <?php if($statuses['CanReject']):?>
-                                            <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="<?= $statuses['Reject'] ?>" autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="StatusDismiss">Cancel Requisition</label>
-                                            <?php endif;?>
+                                            <?php if ($statuses['CanReject']) : ?>
+                                                <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="Rejected" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="StatusDismiss">Reject Requisition</label>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="mb-2 col-12">

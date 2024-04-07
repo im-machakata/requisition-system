@@ -186,7 +186,7 @@ class Requisition extends BaseController
 
     public function authorizeRequisitionsIndex()
     {
-        $isSupervisor = $this->account->Department == 'Supervisor';
+        $isSupervisor = $this->account->department == 'Supervisor';
         $allowedStatus = $isSupervisor ? 'Submitted' : 'Supervisor_Approved';
         self::$VIEW_PARAMS['statuses'] = [
             'Approve' => $isSupervisor ? 'Supervisor_Approved' : 'Finance_Disbursed',
@@ -203,7 +203,7 @@ class Requisition extends BaseController
 
     public function authorizeRequisitions()
     {
-        $isSupervisor = $this->account->Department == 'Supervisor';
+        $isSupervisor = $this->account->department == 'Supervisor';
         $allowedStatus = $isSupervisor ? 'Submitted' : 'Supervisor_Approved';
         self::$VIEW_PARAMS['statuses'] = [
             'CanReject' => $isSupervisor
@@ -212,10 +212,7 @@ class Requisition extends BaseController
         // this prevents the user from rejecting requisitions without the required rights
         if ($isSupervisor) {
             $allowedApprovals = 'Supervisor_Approved,Reject';
-            self::$VIEW_PARAMS['statuses'] = [
-                'Approve' => 'Supervisor_Approved',
-                'CanReject' => $this->account->Department == 'Supervisor'
-            ];
+            self::$VIEW_PARAMS['statuses']['Approve'] = 'Supervisor_Approved';
         } else {
             $allowedApprovals = 'Finance_Disbursed';
         }
