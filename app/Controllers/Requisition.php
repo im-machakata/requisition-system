@@ -159,7 +159,6 @@ class Requisition extends BaseController
         $results = [];
         $account = new Account($this->request->getGet());
         $usernames = model(ModelsAccount::class)
-            ->select('Username, CONCAT(employees.Name," ",Surname) AS Names')
             ->getUsers(false);
 
         if ($account->Username) {
@@ -171,7 +170,6 @@ class Requisition extends BaseController
 
             // get users names
             $account->Names = model(ModelsAccount::class)
-                ->select('CONCAT(employees.Name," ",Surname) AS Names')
                 ->filterByUser($account->Username)
                 ->getUsers(false)[0]->Names;
         }
