@@ -215,6 +215,7 @@ class Requisition extends BaseController
             self::$VIEW_PARAMS['statuses']['Approve'] = 'Supervisor_Approved';
         } else {
             $allowedApprovals = 'Finance_Disbursed';
+            self::$VIEW_PARAMS['statuses']['Approve'] = 'Finance_Disbursed';
         }
 
         // validate form
