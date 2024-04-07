@@ -186,13 +186,15 @@ class Requisition extends BaseController
 
     public function authorizeRequisitionsIndex()
     {
+        $isSupervisor = $this->account->Department == 'Supervisor';
+        $allowedStatus = $isSupervisor ? 'Submitted' : 'Supervisor_Approved';
         self::$VIEW_PARAMS['statuses'] = [
-            'Approve' => $this->account->Department == 'Supervisor' ? 'Supervisor_Approved' : 'Finance_Disbursed',
-            'CanReject' => $this->account->Department == 'Supervisor'
+            'Approve' => $isSupervisor ? 'Supervisor_Approved' : 'Finance_Disbursed',
+            'CanReject' => $isSupervisor
         ];
         self::$VIEW_PARAMS['requisitions'] = $this->requisitions
             ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
-            ->where('Status', 'Submitted')
+            ->where('Status', $allowedStatus)
             ->getRequisitions()
             ->getOwners()
             ->paginate(4);
@@ -202,6 +204,7 @@ class Requisition extends BaseController
     public function authorizeRequisitions()
     {
         $isSupervisor = $this->account->Department == 'Supervisor';
+        $allowedStatus = $isSupervisor ? 'Submitted' : 'Supervisor_Approved';
         self::$VIEW_PARAMS['statuses'] = [
             'CanReject' => $isSupervisor
         ];
@@ -228,7 +231,7 @@ class Requisition extends BaseController
             self::$VIEW_PARAMS['error'] = $this->validator->getErrors();
             self::$VIEW_PARAMS['requisitions'] = $this->requisitions
                 ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
-                ->where('Status', 'Submitted')
+                ->where('Status', $allowedStatus)
                 ->getRequisitions()
                 ->getOwners()
                 ->paginate(4);
@@ -243,7 +246,7 @@ class Requisition extends BaseController
         // get updated requisitions
         self::$VIEW_PARAMS['requisitions'] = $this->requisitions
             ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
-            ->where('Status', 'Submitted')
+            ->where('Status', $allowedStatus)
             ->getRequisitions()
             ->getOwners()
             ->paginate(4);
