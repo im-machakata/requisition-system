@@ -82,17 +82,17 @@ $routes->group('sys', function (RouteCollection $routes) {
         if (!model(Account::class)->first()) {
             command('db:seed Accounts');
         }
-        return redirect()->to('/');
+        return redirect('/');
     });
     $routes->get('re-install', function () {
         command('migrate:rollback --force --all');
         command('migrate');
         command('db:seed Accounts');
         command('db:seed Departments');
-        return redirect()->to('/');
+        return redirect('/');
     });
     $routes->get('crash-it', function () {
         command('migrate:rollback --force --all');
-        return redirect()->to('/');
+        return redirect('/');
     });
 });
