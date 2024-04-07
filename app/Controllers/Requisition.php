@@ -191,14 +191,40 @@ class Requisition extends BaseController
             ->where('Status', 'Submitted')
             ->getRequisitions()
             ->getOwners()
-            ->paginate(6);
+            ->paginate(4);
         return view('forms/authorize-requisitions', self::$VIEW_PARAMS);
     }
 
     public function authorizeRequisitions()
     {
-        return view('forms/authorize-requisitions', [
-            ...self::$VIEW_PARAMS,
+        $formIsValid = $this->validate([
+            'ID' => 'required|is_not_unique[requisitions.ID]',
+            'Status' => 'required|in_list[Supervisor_Approved,Rejected]'
         ]);
+        if (!$formIsValid) {
+            self::$VIEW_PARAMS['error'] = $this->validator->getErrors();
+            self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+                ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
+                ->where('Status', 'Submitted')
+                ->getRequisitions()
+                ->getOwners()
+                ->paginate(4);
+            return view('forms/authorize-requisitions', self::$VIEW_PARAMS);
+        }
+
+        $submittedData = $this->validator->getValidated();
+        $requisition = $this->requisitions->find($submittedData['ID']);
+        $requisition->Status = $submittedData['Status'];
+        $this->requisitions->update($submittedData, $requisition);
+
+        self::$VIEW_PARAMS['requisitions'] = $this->requisitions
+            ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
+            ->where('Status', 'Submitted')
+            ->getRequisitions()
+            ->getOwners()
+            ->paginate(4);
+
+        self::$VIEW_PARAMS['success'] = 'Requisition has been updated.';
+        return view('forms/authorize-requisitions', self::$VIEW_PARAMS);
     }
 }

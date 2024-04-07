@@ -64,11 +64,11 @@ echo $this->include('_templates/head'); ?>
                         <div class="text-white mb-2">
                             Approve / Cancel a submitted requisition
                         </div>
+                        <?= $this->include('_templates/alerts'); ?>
                         <form action="/authorize-requisitions" method="post" class="mt-2">
                             <input type="hidden" id="ID" name="ID" value="" required>
                             <div class="card border-0 mt-4">
                                 <div class="card-body row">
-                                    <?= $this->include('_templates/alerts'); ?>
                                     <div class="col-lg-6">
                                         <div class="mb-4">
                                             <label for="Amount" class="form-label">Amount</label>
@@ -91,9 +91,9 @@ echo $this->include('_templates/head'); ?>
                                         <div class="btn-group mb-4" role="group" aria-label="Vertical radio toggle button group">
                                             <input type="radio" class="btn-check" name="Status" id="StatusSubmitted" value="" autocomplete="off" disabled checked>
                                             <label class="btn btn-outline-primary" for="StatusSubmitted">Submitted</label>
-                                            <input type="radio" class="btn-check" name="Status" value="Approve" id="StatusApprove" autocomplete="off">
+                                            <input type="radio" class="btn-check" name="Status" value="Supervisor_Approved" id="StatusApprove" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="StatusApprove">Approve Requisition</label>
-                                            <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="Cancel" autocomplete="off">
+                                            <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="Rejected" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="StatusDismiss">Cancel Requisition</label>
                                         </div>
                                     </div>
