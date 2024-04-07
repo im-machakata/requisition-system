@@ -14,5 +14,6 @@ class Departments extends Seeder
         $departments->insert(['Name' => 'Admin']);
         $departments->insert(['Name' => 'Accounts']);
         $departments->insert(['Name' => 'Supervisor']);
+        $departments->insert(['Name' => 'Employees']);
     }
 }
