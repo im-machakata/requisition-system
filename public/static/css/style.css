@@ -11,6 +11,10 @@
   border-bottom: 0.3em solid #003ec4;
 }
 
+.menu .card {
+  cursor: pointer;
+}
+
 footer .copyright {
   background: #003ec4;
 }

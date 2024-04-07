@@ -3,7 +3,7 @@ $(function () {
     $('#UpdateRequisition').on('click', function (event) {
         if (!$('#ID').val()) event.preventDefault();
     });
-    
+
     // register bootstrap tooltips
     $(document).find('[data-bs-toggle=tooltip]').map(function () {
         new bootstrap.Tooltip(this);
@@ -19,6 +19,16 @@ $(function () {
         $('#ID').val(requisitionCard.find('.id').val().trim());
         $('#StatusSubmitted').prop('checked', true);
     })
+
+    // click the ancor tag when .card is clicked
+    $('.menu .card').on('click', function (event) {
+        if (event.target.nodeName.toLowerCase() == "div") {
+            event.preventDefault();
+
+            // navigate to selected page url
+            window.location.href = $(this).find('a:first').attr('href');
+        }
+    });
 
     // change background color on hover menu card
     $('.menu .card').on('mouseenter', function () {
