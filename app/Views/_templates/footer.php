@@ -18,7 +18,7 @@ if (!function_exists('get_file_date')) {
                     <div class="text-muted"> All content is available under the <a href="//www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" target="_blank">Open Government Licence v3.0</a>, except where otherwise stated.</div>
                 </div>
                 <div class="col-lg-1">
-                    <img src="/static/images/core5.png" alt="System Logo" class="mt-lg-4 mt-2">
+                    <img src="/static/images/core5.png" alt="System Logo" class="mt-lg-4 mt-2 d-none d-md-block">
                 </div>
             </div>
         </div>
