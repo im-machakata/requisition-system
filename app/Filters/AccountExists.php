@@ -28,7 +28,7 @@ class AccountExists implements FilterInterface
     {
         if ($user = session()->get('user')) {
             if (!model(Account::class)->find($user->ID)) {
-                session()->delete('user');
+                session()->remove('user');
                 return response()->redirect('/auth/login');
             }
         }
