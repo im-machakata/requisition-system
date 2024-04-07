@@ -91,12 +91,12 @@ echo $this->include('_templates/head'); ?>
                                     <div class="col-lg-12">
                                         <div class="btn-group mb-4" role="group" aria-label="Vertical radio toggle button group">
                                             <input type="radio" class="btn-check" name="Status" id="StatusSubmitted" value="" autocomplete="off" disabled checked>
-                                            <label class="btn btn-outline-primary" for="StatusSubmitted">Submitted</label>
+                                            <label class="btn btn-outline-primary" for="StatusSubmitted">Sent</label>
                                             <input type="radio" class="btn-check" name="Status" value="<?= $statuses['Approve'] ?>" id="StatusApprove" autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="StatusApprove">Approve Requisition</label>
+                                            <label class="btn btn-outline-primary" for="StatusApprove">Approve</label>
                                             <?php if ($statuses['CanReject']) : ?>
                                                 <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="Rejected" autocomplete="off">
-                                                <label class="btn btn-outline-primary" for="StatusDismiss">Reject Requisition</label>
+                                                <label class="btn btn-outline-primary" for="StatusDismiss">Reject</label>
                                             <?php endif; ?>
                                         </div>
                                     </div>
