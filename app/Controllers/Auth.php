@@ -126,8 +126,13 @@ class Auth extends BaseController
 
         // save employee to database
         $employees->save($newEmployee);
-
-        return redirect('/');
+        
+        return view('auth/add-user', [
+            ...self::$ADD_USER_CONFIG,
+            'users' => $accounts->getUsers(),
+            'pager' => $accounts->pager,
+            'success'=>'New user has been added.'
+        ]);
     }
 
     public function viewPassword()
