@@ -108,7 +108,7 @@ class Auth extends BaseController
         // step 1: create an auth account 
         // so that the user will be able to log in
         $accounts = model(Account::class);
-        $newAccount = new EntitiesAccount($this->request->getPost());
+        $newAccount = new EntitiesAccount($this->validator->getValidated());
 
         // hash password 
         $newAccount->Password = password_hash($newAccount->Password, PASSWORD_DEFAULT);
@@ -119,7 +119,7 @@ class Auth extends BaseController
         // step 2: create an employee account
         // to store the user details
         $employees = model(ModelsEmployee::class);
-        $newEmployee = new Employee($this->request->getPost());
+        $newEmployee = new Employee($this->validator->getValidated());
 
         // get employees account id, required to link employee 
         $newEmployee->AccountID = $accounts->getInsertID();
