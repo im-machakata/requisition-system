@@ -11,8 +11,6 @@ class Requisition extends Entity
         'CreatedAt',
         'UpdatedAt',
         'DeletedAt',
-        'OutFrom',
-        'OutTo'
     ];
     protected $casts   = [];
 

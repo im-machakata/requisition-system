@@ -94,10 +94,10 @@ echo $this->include('_templates/head'); ?>
                                 <div class="card-footer border-dark">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            From: <?= $requisition->OutFrom ? $requisition->OutFrom->toLocalizedString('MMM d,  yyyy') : 'N/A' ?>
+                                            From: <?= $requisition->OutFrom ?? 'N/A' ?>
                                         </div>
                                         <div class="col-lg-6">
-                                            To: <?= $requisition->OutTo ? $requisition->OutTo->toLocalizedString('MMM d,  yyyy') : 'N/A' ?>
+                                            To: <?= $requisition->OutTo ?? 'N/A' ?>
                                         </div>
                                     </div>
                                 </div>
