@@ -4,50 +4,57 @@ echo $this->include('_templates/head'); ?>
 <main class="d-flex flex-column justify-content-center align-items-center container-fluid bg-light" style="min-height: 100vh">
     <div class="row container-fluid justify-content-center p-3">
         <?= $this->include('_templates/header'); ?>
+        <?= $this->include('_templates/user-type'); ?>
+        <?= $this->include('_templates/alerts'); ?>
         <div class="col-12 mb-4">
-            <div class="container row justify-content-center mx-auto my-4 g-4" style="max-width: 800px;">
-                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-0">
-                    <div class="card shadow border-0">
+            <div class="col-12 row g-4 mb-4 menu">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow border-primary border-0">
                         <div class="card-body">
-                            <h5 class="card-title">Advanced Salary</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/requests/advanced-salaries" class="btn btn-primary w-100">New Requisition</a>
+                            <a href="advanced-salaries" class="text-decoration-none text-center">
+                                <i class="fa-thin fa-money-check-dollar-pen fa-6x my-0 d-block"></i>
+                                <h3 class="card-title h5 mb-3">Advanced Salary</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-0">
-                    <div class="card shadow border-0">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow border-primary border-0">
                         <div class="card-body">
-                            <h5 class="card-title">Petty Cash</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/requests/petty-cash" class="btn btn-primary w-100">New Requisition</a>
+                            <a href="travel-and-subsistencies" class="text-decoration-none text-center">
+                                <i class="fa-thin fa-plane-departure fa-6x my-0 d-block"></i>
+                                <h3 class="card-title h5 mb-3">Travel &amp; Subsistences</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-0">
-                    <div class="card shadow border-0">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow border-primary border-0">
                         <div class="card-body">
-                            <h5 class="card-title">Travel & Subsistence</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/requests/travel-and-subsistencies" class="btn btn-primary w-100">New Requisition</a>
+                            <a href="petty-cash" class="text-decoration-none text-center">
+                                <i class="fa-thin fa-money-bill-1 fa-6x my-0 d-block"></i>
+                                <h3 class="card-title h5 mb-3">Petty Cash</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card shadow border-0">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow border-primary border-0">
                         <div class="card-body">
-                            <h5 class="card-title">Change Password</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/auth/change-password" class="btn btn-primary w-100">Change Password</a>
+                            <a href="/auth/change-password" class="text-decoration-none text-center">
+                                <i class="fa-thin fa-unlock-keyhole fa-6x my-0 d-block"></i>
+                                <h3 class="card-title h5 mb-3">Change Password</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card shadow border-0">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow border-primary border-0">
                         <div class="card-body">
-                            <h5 class="card-title">Logout</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/auth/logout" class="btn btn-primary w-100">Log Out</a>
+                            <a href="/auth/logout" class="text-decoration-none text-center">
+                                <i class="fa-thin fa-arrow-right-from-bracket fa-6x my-0 d-block"></i>
+                                <h3 class="card-title h5 mb-3">Logout</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
