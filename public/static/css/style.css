@@ -2,3 +2,11 @@
   box-shadow: none !important;
   outline: none !important;
 }
+
+.btn.btn-primary {
+  border-bottom: 0.3em solid #0063e4;
+}
+
+.btn.btn-primary:hover {
+  border-bottom: 0.3em solid #0003b0;
+}
