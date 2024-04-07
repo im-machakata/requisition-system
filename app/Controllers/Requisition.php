@@ -186,6 +186,10 @@ class Requisition extends BaseController
 
     public function authorizeRequisitionsIndex()
     {
+        self::$VIEW_PARAMS['statuses'] = [
+            'Approve' => $this->account->Department == 'Supervisor' ? 'Supervisor_Approved' : 'Finance_Disbursed',
+            'CanReject' => $this->account->Department == 'Supervisor'
+        ];
         self::$VIEW_PARAMS['requisitions'] = $this->requisitions
             ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
             ->where('Status', 'Submitted')
@@ -197,10 +201,29 @@ class Requisition extends BaseController
 
     public function authorizeRequisitions()
     {
+        $isSupervisor = $this->account->Department == 'Supervisor';
+        self::$VIEW_PARAMS['statuses'] = [
+            'CanReject' => $isSupervisor
+        ];
+
+        // this prevents the user from rejecting requisitions without the required rights
+        if ($isSupervisor) {
+            $allowedApprovals = 'Supervisor_Approved,Reject';
+            self::$VIEW_PARAMS['statuses'] = [
+                'Approve' => 'Supervisor_Approved',
+                'CanReject' => $this->account->Department == 'Supervisor'
+            ];
+        } else {
+            $allowedApprovals = 'Finance_Disbursed';
+        }
+
+        // validate form
         $formIsValid = $this->validate([
             'ID' => 'required|is_not_unique[requisitions.ID]',
-            'Status' => 'required|in_list[Supervisor_Approved,Rejected]'
+            'Status' => sprintf('required|in_list[%s]', $allowedApprovals)
         ]);
+
+        // show errors
         if (!$formIsValid) {
             self::$VIEW_PARAMS['error'] = $this->validator->getErrors();
             self::$VIEW_PARAMS['requisitions'] = $this->requisitions
@@ -217,6 +240,7 @@ class Requisition extends BaseController
         $requisition->Status = $submittedData['Status'];
         $this->requisitions->update($submittedData, $requisition);
 
+        // get updated requisitions
         self::$VIEW_PARAMS['requisitions'] = $this->requisitions
             ->select('requisitions.ID AS ReqID, requisitions.UpdatedAt, requisitions.Amount, requisitions.Reason, CONCAT(Name, " ", Surname) AS Names')
             ->where('Status', 'Submitted')

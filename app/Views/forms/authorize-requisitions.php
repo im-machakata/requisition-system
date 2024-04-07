@@ -17,6 +17,7 @@ echo $this->include('_templates/head'); ?>
                         <h1 class="text-body h2 fw-bold">Recent Requisitions</h1>
                         <div class="text-body mb-4">
                             Here's a list of the recent requisitions requiring your attention.
+                            <?= !$requisitions ? '<br> No new requisitions were found.' : '' ?>
                         </div>
                         <div class="row">
                             <?php foreach ($requisitions as $requisition) : ?>
@@ -91,10 +92,12 @@ echo $this->include('_templates/head'); ?>
                                         <div class="btn-group mb-4" role="group" aria-label="Vertical radio toggle button group">
                                             <input type="radio" class="btn-check" name="Status" id="StatusSubmitted" value="" autocomplete="off" disabled checked>
                                             <label class="btn btn-outline-primary" for="StatusSubmitted">Submitted</label>
-                                            <input type="radio" class="btn-check" name="Status" value="Supervisor_Approved" id="StatusApprove" autocomplete="off">
+                                            <input type="radio" class="btn-check" name="Status" value="<?= $statuses['Approve'] ?>" id="StatusApprove" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="StatusApprove">Approve Requisition</label>
-                                            <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="Rejected" autocomplete="off">
+                                            <?php if($statuses['CanReject']):?>
+                                            <input type="radio" class="btn-check" name="Status" id="StatusDismiss" value="<?= $statuses['Reject'] ?>" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="StatusDismiss">Cancel Requisition</label>
+                                            <?php endif;?>
                                         </div>
                                     </div>
                                     <div class="mb-2 col-12">
