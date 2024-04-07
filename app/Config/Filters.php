@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Filters\AccountExists;
+use App\Filters\Authenticated;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -24,7 +26,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'auth'          => \App\Filters\Authenticated::class,
+        'auth'          => Authenticated::class,
+        'account_exists' => AccountExists::class
     ];
 
     /**
@@ -35,7 +38,7 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
+            'account_exists',
             // 'csrf',
             // 'invalidchars',
         ],
