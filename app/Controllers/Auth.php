@@ -82,6 +82,7 @@ class Auth extends BaseController
 
     public function createAccount()
     {
+        $accounts = model(Account::class);
         $formDataIsValid = $this->validate([
             'Name' => 'required|min_length[3]|max_length[25]',
             'Surname' => 'required|min_length[3]|max_length[25]',
@@ -98,6 +99,8 @@ class Auth extends BaseController
             return view('auth/add-user', [
                 // add error to existing variables
                 'error' => $this->validator->getErrors(),
+                'users' => $accounts->getUsers(),
+                'pager' => $accounts->pager,
                 ...self::$ADD_USER_CONFIG,
             ]);
         }
