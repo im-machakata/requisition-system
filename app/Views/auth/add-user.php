@@ -90,7 +90,7 @@ echo $this->include('_templates/head'); ?>
                 <?php foreach ($users as $user) : ?>
                     <div class="blockquote bg-white my-3 p-2 px-3 rounded">
                         <div class="small text-primary"><strong><?= $user->Username ?>.</strong></div>
-                        <div class="h6 font-bold font-sm mb-2"><?= $user->Name . ' ' . $user->Surname ?></div>
+                        <div class="h6 font-bold font-sm mb-2"><?= $user->Names ?></div>
                     </div>
                 <?php endforeach; ?>
 
