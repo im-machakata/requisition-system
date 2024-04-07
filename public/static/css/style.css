@@ -10,3 +10,7 @@
 .btn.btn-primary:hover {
   border-bottom: 0.3em solid #003ec4;
 }
+
+footer .copyright {
+  background: #003ec4;
+}
