@@ -67,10 +67,10 @@ $routes->get('user-reports', [Requisition::class, 'viewUserReportsIndex'], [
 ]);
 
 $routes->get('authorize-requisitions', [Requisition::class, 'authorizeRequisitionsIndex'], [
-    'filter' => 'auth:Supervisor'
+    'filter' => 'auth:Supervisor,Accounts'
 ]);
 $routes->post('authorize-requisitions', [Requisition::class, 'authorizeRequisitions'], [
-    'filter' => 'auth:Supervisor'
+    'filter' => 'auth:Supervisor,Accounts'
 ]);
 
 $routes->group('sys', function (RouteCollection $routes) {
