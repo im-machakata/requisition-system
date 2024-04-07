@@ -9,7 +9,7 @@ echo $this->include('_templates/head'); ?>
         <div class="col-12 mb-4">
             <div class="col-12 row g-4 mb-4 menu">
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card shadow border-primary border-0">
+                    <div class="card shadow-none border-primary border-2">
                         <div class="card-body">
                             <a href="advanced-salaries" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-money-check-dollar-pen fa-6x my-0 d-block"></i>
@@ -19,7 +19,7 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card shadow border-primary border-0">
+                    <div class="card shadow-none border-primary border-2">
                         <div class="card-body">
                             <a href="travel-and-subsistencies" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-plane-departure fa-6x my-0 d-block"></i>
@@ -29,7 +29,7 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card shadow border-primary border-0">
+                    <div class="card shadow-none border-primary border-2">
                         <div class="card-body">
                             <a href="petty-cash" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-money-bill-1 fa-6x my-0 d-block"></i>
@@ -39,7 +39,7 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card shadow border-primary border-0">
+                    <div class="card shadow-none border-primary border-2">
                         <div class="card-body">
                             <a href="authorize-requisitions" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-signature fa-6x my-0 d-block"></i>
@@ -49,7 +49,7 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card shadow border-primary border-0">
+                    <div class="card shadow-none border-primary border-2">
                         <div class="card-body">
                             <a href="/auth/change-password" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-unlock-keyhole fa-6x my-0 d-block"></i>
@@ -59,7 +59,7 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <div class="card shadow border-primary border-0">
+                    <div class="card shadow-none border-primary border-2">
                         <div class="card-body">
                             <a href="/auth/logout" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-arrow-right-from-bracket fa-6x my-0 d-block"></i>
