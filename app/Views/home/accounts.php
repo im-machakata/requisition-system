@@ -41,6 +41,16 @@ echo $this->include('_templates/head'); ?>
                 <div class="col-sm-6 col-lg-3">
                     <div class="card shadow border-primary border-0">
                         <div class="card-body">
+                            <a href="authorize-requisitions" class="text-decoration-none text-center">
+                                <i class="fa-thin fa-signature fa-6x my-0 d-block"></i>
+                                <h3 class="card-title h5 mb-3">Authorization</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card shadow border-primary border-0">
+                        <div class="card-body">
                             <a href="/auth/change-password" class="text-decoration-none text-center">
                                 <i class="fa-thin fa-unlock-keyhole fa-6x my-0 d-block"></i>
                                 <h3 class="card-title h5 mb-3">Change Password</h3>
