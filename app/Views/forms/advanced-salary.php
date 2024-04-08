@@ -1,8 +1,9 @@
 <?php
+helper('text');
 extract($this->data);
 $this->setVar('title', 'Advanced Salary');
 echo $this->include('_templates/head'); ?>
-<main class="bg-primary">
+<main class="bg-light">
     <div class="container-fluid" style="min-width: 100%">
         <div class="row" style="min-height: 100vh; ">
             <div class="col-lg-6 bg-white">
@@ -39,40 +40,44 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 border-start border-4">
                 <div class="container-fluid">
                     <div class="mt-5 mb-4 pt-lg-4">
-                        <h2 class="text-white h2 fw-bold">My Advanced Requisitions</h2>
-                        <div class="text-white">
+                        <h2 class="text-body h2 fw-bold pt-lg-3">My Advanced Requisitions</h2>
+                        <div class="text-body">
                             <?php if ($requisitions) : ?>
                                 You have <?= count($requisitions) ?> advanced salary submittions
                             <?php elseif (!$requisitions) : ?>
                                 You have not made any advanced salary requisitions.
                             <?php endif; ?>
                         </div>
-                        <?php foreach ($requisitions as $requisition) : ?>
-                            <div class="card border-0 my-3">
-                                <div class="card-header bg-dark border-dark text-white">
-                                    <div class="d-flex">
-                                        <div class="flex-fill">
-                                            Amount: $<?= number_format($requisition->Amount, 2) ?> USD
+                        <div class="row">
+                            <?php foreach ($requisitions as $requisition) : ?>
+                                <div class="col-12">
+                                    <div class="card border-dark my-3">
+                                        <div class="card-header bg-dark border-dark text-white">
+                                            <div class="d-flex">
+                                                <div class="flex-fill">
+                                                    $<?= number_format($requisition->Amount, 2) ?> USD
+                                                </div>
+                                                <div class="float-end">
+                                                    <span class="badge bg-primary"><?= str_replace('_', ' ', $requisition->Status) ?></span>
+                                                    <!-- <span class="badge bg-primary">Delete</span> -->
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="float-end">
-                                            <span class="badge bg-primary"><?= str_replace('_', ' ', $requisition->Status) ?></span>
-                                            <!-- <span class="badge bg-primary">Delete</span> -->
+                                        <div class="card-body">
+                                            <p class="card-text mb-0">
+                                                <?= esc(excerpt($requisition->Reason)) ?>
+                                            </p>
+                                            <p class="card-text">
+                                                <small class="text-body-secondary">Last Updated: <?= $requisition->UpdatedAt->humanize() ?></small>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text mb-0">
-                                        <?= esc($requisition->Reason) ?>
-                                    </p>
-                                    <p class="card-text">
-                                        <small class="text-body-secondary">Last Updated: <?= $requisition->UpdatedAt->humanize() ?></small>
-                                    </p>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
                         <?= $pager ? $pager->links() : '' ?>
                     </div>
                 </div>
