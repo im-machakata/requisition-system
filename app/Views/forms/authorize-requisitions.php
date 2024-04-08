@@ -2,7 +2,7 @@
 extract($this->data);
 $this->setVar('title', 'Authorize Requisitions');
 echo $this->include('_templates/head'); ?>
-<main class="bg-primary">
+<main class="bg-light">
     <div class="container-fluid" style="min-width: 100%">
         <div class="row" style="min-height: 100vh; ">
             <div class="col-lg-6 bg-white">
@@ -58,17 +58,17 @@ echo $this->include('_templates/head'); ?>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 border-start border-4">
                 <div class="container-fluid">
                     <div class="mt-5 mb-4 pt-lg-4">
-                        <h2 class="text-white h2 fw-bold">Update Requisition Status</h2>
-                        <div class="text-white mb-2">
+                        <h2 class="text-body h2 fw-bold pt-lg-3">Update Requisition Status</h2>
+                        <div class="text-body mb-2">
                             Approve / Cancel a submitted requisition
                         </div>
                         <?= $this->include('_templates/alerts'); ?>
                         <form action="/authorize-requisitions" method="post" class="mt-2">
                             <input type="hidden" id="ID" name="ID" value="" required>
-                            <div class="card border-0 mt-4">
+                            <div class="card border-dark mt-4">
                                 <div class="card-body row">
                                     <div class="col-lg-6">
                                         <div class="mb-4">
