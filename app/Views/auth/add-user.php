@@ -82,18 +82,36 @@ echo $this->include('_templates/head'); ?>
                 </form>
             </div>
         </div>
-        <div class="col-lg-6 bg-primary">
+        <div class="col-lg-6 bg-light border-start border-4">
             <div class="container-fluid">
-                <div class="header mt-5 mb-4">
-                    <h2 class="text-white fw-bold">Registered Users</h2>
+                <div class="header mt-5 mb-4 pt-lg-4">
+                    <h2 class="text-body fw-bold">Registered Users</h2>
+                    <p>Here's a list of all registered users.</p>
                 </div>
-                <?php foreach ($users as $user) : ?>
-                    <div class="blockquote bg-white my-3 p-2 px-3 rounded">
-                        <div class="small text-primary"><strong><?= $user->Username ?>.</strong></div>
-                        <div class="h6 font-bold font-sm mb-2"><?= $user->Names ?></div>
-                    </div>
-                <?php endforeach; ?>
-
+                <div class="row">
+                    <?php foreach ($users as $user) : ?>
+                        <div class="col-lg-6">
+                            <div class="border bg-white my-3 card">
+                                <div class="card-body">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-user-circle fa-2x text-muted"></i>
+                                    </div>
+                                    <div class="fw-bold">
+                                        <?= $user->Username ?>
+                                    </div>
+                                    <div class="mb-2">
+                                        <?= $user->Names ?>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="text-muted">
+                                        Joined: <?= $user->CreatedAt->toLocalizedString('MMM d, yyyy') ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
                 <?= $pager ? $pager->links() : '' ?>
             </div>
         </div>
