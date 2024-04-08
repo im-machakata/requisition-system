@@ -166,7 +166,7 @@ class Requisition extends BaseController
             $results = $this->requisitions
                 ->filterByUser($account->Username)
                 ->getRequisitions()
-                ->findAll();
+                ->paginate(2);
 
             // get users names
             $account->Names = model(ModelsAccount::class)
