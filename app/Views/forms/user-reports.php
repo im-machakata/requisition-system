@@ -43,7 +43,7 @@ echo $this->include('_templates/head'); ?>
             <div class="col-lg-6 border-start border-4">
                 <div class="container-fluid">
                     <div class="mt-5 mb-4 pt-lg-4">
-                        <h2 class="text-body h2 fw-bold">User Requisitions</h2>
+                        <h2 class="text-body h2 fw-bold pt-lg-3">User Requisitions</h2>
                         <div class="text-body">
                             <?php if ($results && $account->Username) : ?>
                                 Showing you <?= count($results) ?> submittions by <?= $account->Names ?>
