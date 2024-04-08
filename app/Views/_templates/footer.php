@@ -24,7 +24,7 @@ if (!function_exists('get_file_date')) {
         </div>
         <div class="copyright text-white container-fluid px-4 py-2">
             <div class="container-fluid">
-                &copy; Copyright of Crown Jewels Lab <?= date('Y') ?>.
+                &copy; 2024 Company, Inc. All Rights Reserved.
             </div>
         </div>
     </footer>
