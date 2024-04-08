@@ -10,7 +10,7 @@ if (!function_exists('get_file_date')) {
 <html lang="en-ZW">
 
 <head>
-    <meta name="author" content="Memory">
+    <meta name="author" content="Isaac Machakata">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css?version=5.3.3">
