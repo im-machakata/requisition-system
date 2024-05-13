@@ -20,7 +20,7 @@ CI_ENVIRONMENT = development
 # APP
 #--------------------------------------------------------------------
 
-app.baseURL = 'http://localhost:1501'
+app.baseURL = 'http://localhost'
 
 #--------------------------------------------------------------------
 # DATABASE
